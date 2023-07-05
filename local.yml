@@ -7,7 +7,7 @@
     - name: Create packages directory
       become: yes
       file:
-        path: /packages
+        path: /etc/packages
         state: directory
         mode: 0755
 
@@ -15,10 +15,26 @@
       become: yes
       get_url:
         url: https://discordapp.com/api/download?platform=linux
-        dest: /packages/discord.deb
+        dest: /etc/packages/discord.deb
         mode: 0755
+      tags: discord
 
     - name: Update discord
       become: yes
       apt:
-        deb: /packages/discord.deb
+        deb: /etc/packages/discord.deb
+      tags: discord
+
+    - name: Download GitHub
+      become: yes
+      get_url:
+        url: https://github.com/shiftkey/desktop/releases/download/release-3.2.5-linux1/GitHubDesktop-linux-3.2.5-linux1.deb
+        dest: /etc/packages/github.deb
+        mode: 0755
+      tags: github
+
+    - name: Update github
+      become: yes
+      apt:
+        deb: /etc/packages/github.deb
+      tags: github
