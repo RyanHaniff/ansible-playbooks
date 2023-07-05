@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  # lets us get privileges
+  become: true
+  # tasks we are about to execute
+  tasks:
+    - name: Create packages directory
+      become: yes
+      file:
+        path: /packages
+        state: directory
+        mode: 0755
+
+    - name: Download discord
+      become: yes
+      get_url:
+        url: https://discordapp.com/api/download?platform=linux
+        dest: /packages/discord.deb
+        mode: 0755
