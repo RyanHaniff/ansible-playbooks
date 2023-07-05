@@ -2,7 +2,7 @@
 Playbook I made to update Github desktop and Discord.
 
 ## Install Ansible 
-Install ansible by pasting the commands below into your command line
+Install Ansible by pasting the commands below into your command line
 ```
 sudo apt-get install software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
@@ -25,4 +25,18 @@ sudo ansible-pull -U https://github.com/RyanHaniff/ansible-playbooks.git --tags 
 #### Discord
 ```
 sudo ansible-pull -U https://github.com/RyanHaniff/ansible-playbooks.git --tags discord
+```
+
+## Latest GitHub Desktop version
+You can find the latest version [here|https://github.com/shiftkey/desktop/releases/]. 
+Copy the link and replace the old URL with the new one
+```
+    - name: Download GitHub
+      become: yes
+      get_url:
+        url: NEW_LINK_HERE
+        dest: /etc/packages/github.deb
+        mode: 0755
+      tags:
+        - github
 ```
