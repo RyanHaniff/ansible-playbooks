@@ -7,7 +7,7 @@
     - name: Create packages directory
       become: yes
       file:
-        path: ./packages
+        path: /packages
         state: directory
         mode: 0755
 
@@ -15,9 +15,10 @@
       become: yes
       get_url:
         url: https://discordapp.com/api/download?platform=linux
-        dest: ./packages/discord.deb
+        dest: /packages/discord.deb
         mode: 0755
 
     - name: Update discord
       become: yes
-      command: ./packages/discord.deb
+      apt:
+        deb: /packages/discord.deb
