@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  # lets us get privileges
+  become: true
+  # tasks we are about to execute
+  tasks:
+    - name: Create packages directory
+      become: yes
+      file:
+        path: /etc/packages
+        state: directory
+        mode: 0755
+
+    - name: Download GitHub
+      become: yes
+      get_url:
+        url: https://github.com/shiftkey/desktop/releases/download/release-3.2.5-linux1/GitHubDesktop-linux-3.2.5-linux1.deb
+        dest: /etc/packages/github.deb
+        mode: 0755
+
+    - name: Update github
+      become: yes
+      apt:
+        deb: /etc/packages/github.deb
