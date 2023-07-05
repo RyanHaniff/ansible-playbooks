@@ -29,7 +29,8 @@ sudo ansible-pull -U https://github.com/RyanHaniff/ansible-playbooks.git --tags 
 
 ## Latest GitHub Desktop version
 You can find the latest version [here](https://github.com/shiftkey/desktop/releases/).
-Copy the link and replace the old URL with the new one
+
+Copy the link and replace the old URL with the new one the local.yml file.
 ```
     - name: Download GitHub
       become: yes
