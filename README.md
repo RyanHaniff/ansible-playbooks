@@ -1,5 +1,5 @@
 # ansible-playbooks
-Playbook I made to update Github desktop and Discord.
+Playbook I made to update GitHub Desktop and Discord.
 
 ## Install Ansible 
 Install Ansible by pasting the commands below into your command line
@@ -15,10 +15,10 @@ Once Ansible is installed you can run the following command
 ```
 sudo ansible-pull -U https://github.com/RyanHaniff/ansible-playbooks.git
 ```
-This installs GitHub and Discord
+This installs GitHub Desktop and Discord
 
 ### Updating only one program:
-#### Github desktop
+#### GitHub Desktop
 ```
 sudo ansible-pull -U https://github.com/RyanHaniff/ansible-playbooks.git --tags github
 ```
