@@ -41,3 +41,7 @@ Copy the link and replace the old URL with the new one the local.yml file.
       tags:
         - github
 ```
+
+## Resources
+https://opensource.com/article/18/3/manage-workstation-ansible
+https://docs.ansible.com/archive/ansible/2.3/get_url_module.html
