@@ -1,0 +1,42 @@
+---
+- name: Install software on localhost
+  hosts: localhost
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+
+    - name: Install VS Code
+      apt:
+        name: code
+        state: present
+
+    - name: Install Google Chrome
+      apt:
+        name: google-chrome-stable
+        state: present
+
+    - name: Add Obsidian Repository
+      apt_repository:
+        repo: deb https://obsidian.md/apt stable/
+        state: present
+
+    - name: Install Obsidian
+      apt:
+        name: obsidian
+        state: present
+
+    - name: Download and Install Zoom
+      get_url:
+        url: "https://zoom.us/client/latest/zoom_amd64.deb"
+        dest: /tmp/zoom_amd64.deb
+
+    - name: Install Zoom
+      apt:
+        deb: /tmp/zoom_amd64.deb
+        state: present
+
+    - name: Clean up downloaded deb file
+      file:
+        path: /tmp/zoom_amd64.deb
+        state: absent
