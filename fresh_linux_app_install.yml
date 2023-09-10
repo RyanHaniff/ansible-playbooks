@@ -40,3 +40,18 @@
       file:
         path: /tmp/zoom_amd64.deb
         state: absent
+        
+    - name: Download GitHub Desktop
+      get_url:
+        url: "https://github.com/shiftkey/desktop/releases/latest/download/GitHubDesktop-linux-amd64.deb"
+        dest: /tmp/GitHubDesktop-linux-amd64.deb
+
+    - name: Install GitHub Desktop
+      apt:
+        deb: /tmp/GitHubDesktop-linux-amd64.deb
+        state: present
+
+    - name: Clean up downloaded GitHub Desktop deb file
+      file:
+        path: /tmp/GitHubDesktop-linux-amd64.deb
+        state: absent
