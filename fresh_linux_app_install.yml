@@ -8,10 +8,10 @@
       apt:
         update_cache: yes
 
-    - name: Install VS Code
-      become: yes
-      apt:
+    - name: Install Visual Studio Code
+      ansible.builtin.snap:
         name: code
+        classic: yes
         state: present
 
     - name: Install Google Chrome
