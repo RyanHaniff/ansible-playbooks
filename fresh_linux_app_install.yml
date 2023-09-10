@@ -8,20 +8,20 @@
       apt:
         update_cache: yes
 
-    - name: Import Microsoft GPG Key
-      ansible.builtin.command: wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+    # - name: Import Microsoft GPG Key
+    #   ansible.builtin.command: wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 
-    - name: Add VSCode Repository
-      ansible.builtin.apt_repository:
-        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-        state: present
+    # - name: Add VSCode Repository
+    #   ansible.builtin.apt_repository:
+    #     repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+    #     state: present
 
-    - name: Install VSCode
-      ansible.builtin.apt:
-        name: code
-        state: present
-        update_cache: yes
-        cache_valid_time: 3600  # You can adjust the cache timeout as needed
+    # - name: Install VSCode
+    #   ansible.builtin.apt:
+    #     name: code
+    #     state: present
+    #     update_cache: yes
+    #     cache_valid_time: 3600  # You can adjust the cache timeout as needed
 
     - name: Install Google Chrome
       become: yes
