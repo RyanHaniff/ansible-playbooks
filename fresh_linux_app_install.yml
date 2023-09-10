@@ -8,22 +8,20 @@
       apt:
         update_cache: yes
 
-    - name: Install Snapd package
+    - name: Import Microsoft GPG Key
+      ansible.builtin.command: wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+
+    - name: Add VSCode Repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+        state: present
+
+    - name: Install VSCode
       ansible.builtin.apt:
-        name: snapd
-        state: present
-
-    - name: Ensure Snapd service is running
-      ansible.builtin.service:
-        name: snapd
-        state: started
-        enabled: yes
-
-    - name: Install Visual Studio Code
-      ansible.builtin.snap:
         name: code
-        classic: yes
         state: present
+        update_cache: yes
+        cache_valid_time: 3600  # You can adjust the cache timeout as needed
 
     - name: Install Google Chrome
       become: yes
