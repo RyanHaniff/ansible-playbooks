@@ -8,6 +8,17 @@
       apt:
         update_cache: yes
 
+    - name: Install Snapd package
+      ansible.builtin.apt:
+        name: snapd
+        state: present
+
+    - name: Ensure Snapd service is running
+      ansible.builtin.service:
+        name: snapd
+        state: started
+        enabled: yes
+
     - name: Install Visual Studio Code
       ansible.builtin.snap:
         name: code
