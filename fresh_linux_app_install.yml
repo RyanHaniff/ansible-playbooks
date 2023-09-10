@@ -1,57 +1,69 @@
 ---
 - name: Install software on localhost
   hosts: localhost
+  become: true
   tasks:
     - name: Update APT package cache
+      become: yes
       apt:
         update_cache: yes
 
     - name: Install VS Code
+      become: yes
       apt:
         name: code
         state: present
 
     - name: Install Google Chrome
+      become: yes
       apt:
         name: google-chrome-stable
         state: present
 
     - name: Add Obsidian Repository
+      become: yes
       apt_repository:
         repo: deb https://obsidian.md/apt stable/
         state: present
 
     - name: Install Obsidian
+      become: yes
       apt:
         name: obsidian
         state: present
 
     - name: Download and Install Zoom
+      become: yes
       get_url:
         url: "https://zoom.us/client/latest/zoom_amd64.deb"
         dest: /tmp/zoom_amd64.deb
 
     - name: Install Zoom
+      become: yes
       apt:
         deb: /tmp/zoom_amd64.deb
         state: present
 
     - name: Clean up downloaded deb file
+      become: yes
       file:
         path: /tmp/zoom_amd64.deb
         state: absent
-        
+
     - name: Download GitHub Desktop
+      become: yes
       get_url:
         url: "https://github.com/shiftkey/desktop/releases/latest/download/GitHubDesktop-linux-amd64.deb"
         dest: /tmp/GitHubDesktop-linux-amd64.deb
 
     - name: Install GitHub Desktop
+      become: yes
       apt:
         deb: /tmp/GitHubDesktop-linux-amd64.deb
         state: present
 
     - name: Clean up downloaded GitHub Desktop deb file
+      become: yes
       file:
         path: /tmp/GitHubDesktop-linux-amd64.deb
         state: absent
